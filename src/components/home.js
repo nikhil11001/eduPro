@@ -18,6 +18,7 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Chatbot } from "react-chatbot-kit";
 import "../css/home.css";
 import mapIcon from "../images/layers.png";
 import userExperienceIco from "../images/interface.png";
@@ -35,8 +36,19 @@ import rubyIco from "../images/ruby.png";
 import javaIco from "../images/java.png";
 import reactIco from "../images/atom.png";
 import htmlIco from "../images/html-5.png";
+import ChatBotIco from "../images/chatbot.png";
+
+import config from "../chatBot/config";
+import MessageParser from "../chatBot/MessageParser";
+import ActionProvider from "../chatBot/ActionProvider";
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showChatBot: false,
+    };
+  }
   render() {
     return (
       <>
@@ -109,6 +121,15 @@ class Home extends React.Component {
                   width="20%"
                 />
               </div>
+              {this.state.showChatBot && (
+                <div className="chat-bot-container">
+                  <Chatbot
+                    config={config}
+                    messageParser={MessageParser}
+                    actionProvider={ActionProvider}
+                  />
+                </div>
+              )}
               <h1 className="text-center">WHO ARE WE ?</h1>
               <hr />
               <i>
@@ -462,6 +483,16 @@ class Home extends React.Component {
                 </p>
               </Col>
             </Row>
+            <div className="chat-bot-ico">
+              <Image
+                className="location-ico bounce-1"
+                src={ChatBotIco}
+                width="5%"
+                onClick={() => {
+                  this.setState({ showChatBot: !this.state.showChatBot });
+                }}
+              />
+            </div>
           </Container>
         </div>
       </>

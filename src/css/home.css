@@ -110,3 +110,18 @@
     transform: translateY(0);
   }
 }
+
+.chat-bot-container {
+  float: right;
+  position: relative;
+  top: 138rem;
+  left: 8rem;
+  z-index: 1;
+}
+
+.chat-bot-ico {
+  position: relative;
+  bottom: 55px;
+  left: 76rem;
+  top: -7px;
+}
